@@ -1,0 +1,42 @@
+plugin_list = [
+{"name":"accelerated-mobile-pages","version":"1.0.91.1"},
+{"name":"add-to-any","version":"1.8.9"},
+{"name":"ad-inserter","version":"2.7.32"},
+{"name":"akismet","version":"5.3"},
+{"name":"antispam-bee","version":"2.11.5"},
+{"name":"async-javascript","version":"2.21.08.31"},
+{"name":"contextual-related-posts","version":"3.4.2"},
+{"name":"cookie-notice","version":"2.4.11.1"},
+{"name":"duplicate-pp","version":"3.5.1"},
+{"name":"easy-table-of-contents","version":"2.0.57.1"},
+{"name":"fast-velocity-minify","version":"3.4.1"},
+{"name":"header-footer","version":"3.2.7"},
+{"name":"popup-builder","version":"4.2.2"},
+{"name":"publishpress-authors","version":"4.2.1"},
+{"name":"seo-by-rank-math","version":"1.0.205"},
+{"name":"recent-posts-widget-extended","version":"2.0.2"},
+{"name":"regenerate-thumbnails","version":"3.1.6"},
+{"name":"related-posts-by-taxonomy","version":"2.7.5"},
+{"name":"rss-featured-image","version":"1.0.6"},
+{"name":"salt-shaker","version":"1.4.3"},
+{"name":"shortcode-in-menus","version":"3.5.1"},
+{"name":"show-modified-date-in-admin-lists","version":"1.4"},
+{"name":"simple-author-box","version":"2.52"},
+{"name":"simple-custom-css","version":"4.0.6"},
+{"name":"google-site-kit","version":"1.113.0"},
+{"name":"wp-smushit","version":"3.15.0"},
+{"name":"wp-nonstop-smushit","version":"2.0.0"},
+{"name":"insta-gallery","version":"4.2.3"},
+{"name":"speakout","version":"4.3.1"},
+{"name":"top-10","version":"3.3.3"},
+{"name":"visitors-traffic-real-time-statistics","version":"7.2"},
+{"name":"wp-optimize","version":"3.2.21"},
+{"name":"wps-hide-login","version":"1.9.9"},
+{"name":"wp-statistics","version":"14.2"},
+{"name":"youtube-embed-plus","version":"14.2.1"},
+{"name":"woocommerce","version":"6.8.0"}
+]
+
+theme_list = [
+    {"name": "astra", "version": "1.8.7"}
+]
