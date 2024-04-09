@@ -3,19 +3,19 @@ import os
 from wordpress_assets.installer import WordPress_Site
 from wordpress_assets.plugin_list import plugin_list, theme_list
 
+this_path = os.path.dirname(os.path.abspath(__file__))
 site = WordPress_Site()
 site.folder_check()
 site.get_info()
 site.wp_install()
 
-this_path = os.path.dirname(os.path.abspath(__file__))
 print('Installing plugins...')
 
 total_tasks = len(plugin_list)
 def progress_bar(progress):
     percent_complete = int((progress * 100) / total_tasks)
     if percent_complete % 25 == 0 or percent_complete % 3 == 0:
-        print(f'{int(percent_complete)} completed...')
+        print(f'{int(percent_complete)}% completed...')
 progress = 1
 for plugin in plugin_list:
     plugin_name = plugin["name"]
