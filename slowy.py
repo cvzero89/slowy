@@ -25,7 +25,7 @@ for plugin in plugin_list:
     progress += 1
 
 def copy_plugins(this_path, plugin):
-    plugin_asset = f'{this_path}/slowy/wordpress_assets/{plugin}'
+    plugin_asset = f'{this_path}/wordpress_assets/{plugin}'
     plugin_dir = f'./wp-content/plugins/{plugin}'
     if os.path.isdir(plugin_dir):
         shutil.rmtree(plugin_dir)
