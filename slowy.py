@@ -2,6 +2,7 @@ import shutil
 import os
 from wordpress_assets.installer import WordPress_Site
 from wordpress_assets.plugin_list import plugin_list, theme_list
+import tarfile
 
 this_path = os.path.dirname(os.path.abspath(__file__))
 site = WordPress_Site()
@@ -31,6 +32,18 @@ def copy_plugins(this_path, plugin):
         shutil.rmtree(plugin_dir)
     shutil.copytree(plugin_asset, plugin_dir)
 
+def copy_uploads(this_path):
+    uploads = tarfile.open(f'{this_path}/wordpress_assets/uploads.tar.gz')
+    uploads.extractall(f'{this_path}/wordpress_assets/')
+    upload_dir_name = uploads.getnames()[0]
+    uploads_asset = f'{this_path}/wordpress_assets/{upload_dir_name}'
+    upload_dir = f'./wp-content/uploads'
+    if os.path.isdir(upload_dir):
+        shutil.rmtree(upload_dir)
+    shutil.copytree(uploads_asset, upload_dir)
+
+copy_uploads(this_path)
+
 site.import_db()
 
 zero_plugins = ['flash', 'its-a-me-mario', 'slowy']
@@ -42,4 +55,8 @@ theme_name = theme_list[0]["name"]
 theme_version = theme_version = theme_list[0]["version"]
 if site.run_command(['wp', 'theme', 'install', theme_name, f'--version={theme_version}']):
     site.run_command(['wp', 'theme', 'activate', theme_name])
+else:
+    default_theme = 'twentytwentyfour'
+    site.run_command(['wp', 'theme', 'activate', default_theme])
+    print(f'Activating default theme since {theme_name} could not be installed.')
 print('Done.')
