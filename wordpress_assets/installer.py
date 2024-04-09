@@ -61,6 +61,7 @@ class WordPress_Site():
 			self.db_pass = getpass.getpass('Enter the database password: ')
 		except KeyboardInterrupt:
 			print('Action cancelled.')
+			exit()
 	
 	"""
 	WordPress downloader, creates config file and setups the automatic install.
@@ -157,4 +158,4 @@ class WordPress_Site():
 		database_name = database.getnames()[0]
 		database.close()
 		self.run_command(['wp', 'db', 'import', f'{this_path}/{database_name}'])
-		self.run_command(['wp', 'search-replace', 'https://wpsupport.dream.press', self.site_name])
+		self.run_command(['wp', 'search-replace', 'https://wpsupport.dream.press', f'https://{self.site_name}'])
