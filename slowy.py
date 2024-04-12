@@ -25,6 +25,22 @@ for plugin in plugin_list:
     progress_bar(progress)
     progress += 1
 
+theme_name = theme_list[0]["name"]
+theme_version = theme_version = theme_list[0]["version"]
+if site.run_command(['wp', 'theme', 'install', theme_name, f'--version={theme_version}']):
+    site.run_command(['wp', 'theme', 'activate', theme_name])
+else:
+    default_theme = 'twentytwentyfour'
+    site.run_command(['wp', 'theme', 'activate', default_theme])
+    print(f'Activating default theme since {theme_name} could not be installed.')
+
+if not os.path.exists('./.htaccess'):
+    print('Copying the .htaccess...')
+    htaccess_location = f'{this_path}/wordpress_assets/.htaccess'
+    shutil.copy(htaccess_location, './')
+    if os.path.exists('./.htaccess'):
+        print('Copied.')
+
 def copy_plugins(this_path, plugin):
     plugin_asset = f'{this_path}/wordpress_assets/{plugin}'
     plugin_dir = f'./wp-content/plugins/{plugin}'
@@ -51,12 +67,5 @@ for plugin in zero_plugins:
     copy_plugins(this_path, plugin)
 
 site.run_command(['wp', 'plugin', 'activate', '--all'])
-theme_name = theme_list[0]["name"]
-theme_version = theme_version = theme_list[0]["version"]
-if site.run_command(['wp', 'theme', 'install', theme_name, f'--version={theme_version}']):
-    site.run_command(['wp', 'theme', 'activate', theme_name])
-else:
-    default_theme = 'twentytwentyfour'
-    site.run_command(['wp', 'theme', 'activate', default_theme])
-    print(f'Activating default theme since {theme_name} could not be installed.')
+
 print('Done.')
