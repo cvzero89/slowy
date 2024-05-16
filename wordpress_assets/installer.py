@@ -9,8 +9,15 @@ class WordPress_Site():
 	"""
 	Setting up a class to handle all info, commands in a better way.
 	"""
-	def __init__(self):
-		print('WordPress Installer...')
+	def __init__(self, mode):
+		self.mode = mode.lower()
+		if self.mode == 'installer':
+			print('WordPress Installer...')
+		elif self.mode == 'run':
+			print('WordPress install skipped...')
+		else:
+			print('Unkown mode.')
+			exit()
 	
 	"""
 	If the script is executed from a subfolder it will move to the home directory.
@@ -52,16 +59,22 @@ class WordPress_Site():
 	Password is not shown in console.
 	"""
 	def get_info(self):
-		try:
-
-			self.site_name = input('Enter the domain name: ').replace('http://', '').replace('https://', '')
-			self.database_name = input('Enter the database name: ')
-			self.user_name = input('Enter the database usermame: ')
-			self.database_host = input('Enter the database hostname: ')
-			self.db_pass = getpass.getpass('Enter the database password: ')
-		except KeyboardInterrupt:
-			print('Action cancelled.')
-			exit()
+		if self.mode == 'installer':
+			try:
+				self.site_name = input('Enter the domain name: ').replace('http://', '').replace('https://', '')
+				self.database_name = input('Enter the database name: ')
+				self.user_name = input('Enter the database usermame: ')
+				self.database_host = input('Enter the database hostname: ')
+				self.db_pass = getpass.getpass('Enter the database password: ')
+			except KeyboardInterrupt:
+				print('Action cancelled.')
+				exit()
+		elif self.mode == 'run':
+			self.site_name = self.run_command(['wp', 
+									 'option', 
+									 'get', 
+									 'siteurl']).replace('http://', '').replace('https://', '')
+			
 	
 	"""
 	WordPress downloader, creates config file and setups the automatic install.

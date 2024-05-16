@@ -1,14 +1,25 @@
 import shutil
 import os
+import tarfile
+import argparse
 from wordpress_assets.installer import WordPress_Site
 from wordpress_assets.plugin_list import plugin_list, theme_list
-import tarfile
+
+parser = argparse.ArgumentParser(
+                    prog='Slowy',
+                    description='Sets up a slow WordPress instance to be used for debug/training.',
+                    epilog='What are you looking at? I am a short help article.')
+
+parser.add_argument('--mode', type=str, nargs=1, required=True, default='install', choices=['install', 'run'])
+args = parser.parse_args()
+mode = args.mode[0]
 
 this_path = os.path.dirname(os.path.abspath(__file__))
-site = WordPress_Site()
+site = WordPress_Site(mode)
 site.folder_check()
 site.get_info()
-site.wp_install()
+if mode == 'install':
+    site.wp_install()
 
 print('Installing plugins...')
 
