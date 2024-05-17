@@ -11,12 +11,12 @@ class WordPress_Site():
 	"""
 	def __init__(self, mode):
 		self.mode = mode.lower()
-		if self.mode == 'installer':
+		if self.mode == 'install':
 			print('WordPress Installer...')
 		elif self.mode == 'run':
 			print('WordPress install skipped...')
 		else:
-			print('Unkown mode.')
+			print('Unknown mode.')
 			exit()
 	
 	"""
@@ -59,7 +59,7 @@ class WordPress_Site():
 	Password is not shown in console.
 	"""
 	def get_info(self):
-		if self.mode == 'installer':
+		if self.mode == 'install':
 			try:
 				self.site_name = input('Enter the domain name: ').replace('http://', '').replace('https://', '')
 				self.database_name = input('Enter the database name: ')
